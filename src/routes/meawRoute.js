@@ -6,7 +6,7 @@ router.get('/all', meawController.getPets);
 router.get('/nome/:nome', meawController.getNomePets )
 router.post('/add', meawController.addPet)
 router.put('/atualizar', meawController.updatePet)
-router.delete('deletar', meawController.deleteByIdPet)
+router.delete('/deletar', meawController.deleteByIdPet)
 //router.get('/pets/:id', meawController.getById);
 
 

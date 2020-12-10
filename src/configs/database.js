@@ -2,8 +2,8 @@ const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 
 dotenv.config();
-const DB_URI = "mongodb://localhost:27017/reprograma"  // nome da conexão 
-//const DB_URI = process.env.DB_URI
+//const DB_URI = "mongodb://localhost:27017/reprograma"  // nome da conexão 
+const DB_URI=process.env.DB_URI
 
 
 const connect = () => {

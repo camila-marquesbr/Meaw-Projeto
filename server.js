@@ -1,8 +1,7 @@
-const app = require("./src/app");
-//const PORT = 5555
-const port = process.env.PORT; // a porta 
+const app = require('./src/app')
+const PORT = process.env.PORT 
 
+app.listen(PORT, function() {
+    console.log(`Servidor rodando em http://localhost:${PORT}`)
+})
 
-app.listen(port, () => {
-    console.log(`app está rodando na porta ${port}`);
-  });

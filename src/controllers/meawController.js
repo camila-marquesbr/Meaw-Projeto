@@ -1,146 +1,117 @@
-const petsCollection = require('../models/petsSchema)
+const petsCollection = require('../models/petsSchema')
 
 
 //getAll lugares
-const getLugares = (req,res)=>{
+const getPets = (req,res)=>{
     console.log(req.url)
 
-    lugaresCollection.find((error,lugares)=>{ 
+    petsCollection.find((error,pets)=>{ 
         if(error){
             return res.status(500).send(error)
         }else{
             return res.status(200).send({
-                mensagem: "Get- todos os lugares, feito com sucesso",
-                lugares
+                mensagem: "Todos os pets",
+                pets
             })
-        }
-    }).sort({nome:1})
-}
-
-
-//Get ID
-const getById = (req, res) => {
-    const idParam = req.params.id
-    
-    lugaresCollection.findById(idParam, (error, localID)=>{
-        if(error){
-            return res.status(404).send({mensagem:"ID não encontrado"})
-        }else{
-            if(localID){
-                return res.status(200).send({
-                mensagem:"ID encontrado!",
-                localID})
-            }else{
-                return res.status(404).send("Não encontrado.")
-            }
         }
     })
 }
 
-// GET tipo
-const getTipo = (req, res) => {
-        const nomeParam = req.params.tipo
-        lugaresCollection.find({tipo:nomeParam}, (error, tipo) => {
-          if(error) {
-            return res.status(500).send(error)
-    
-          } else if(tipo == '') {
-            return res.status(404).send('Local não encontrado.')
-    
-          } else {
-            return res.status(200).send(tipo)
-          }
+
+
+
+//GET getNomePets - busca os pets pelo nome
+const getNomePets = (req, res) => {
+  petsCollection.findOne({ nome: req.params.nome }, (error, nome) => {
+    if (nome) {
+      return res.status(200).json({
+        mensagem: "Nome encontrado",
+        nome
+
+      })
+
+    } else {
+      return res.status(500).send({
+        mensagem: "Nome não encontrado",
+        error
+      })
+    }
+  })
+}
+
+
+//POST para add pets 
+const addPet = (req, res) => {
+  const petBody = req.body
+  const cadastro = new petsCollection(petBody)
+
+  cadastro.save((error) => {
+    if (error) {
+      return res.status(400).send(error)
+    } else {
+      return res.status(200).send({
+        mensagem: `${"Obrigado! Cadastro de pet realizado com sucesso"}`,
+        cadastro
+      })
+    }
+  })
+}
+
+
+//atualiza cadastro
+const updatePet = (req, res) => {
+  const idParam = req.query
+  const contatoBody = req.body
+  const update = { new: true }
+
+  petsCollection.findByIdAndUpdate(idParam, contatoBody, update, (error, pets) => {
+
+    if (error) {
+      return res.status(500).send({
+        mensagem: "Algo inesperado aconteceu ao atualizar!",
+        error
+      })
+
+    } else {
+      return res.status(200).send({
+        mensagem: "Cadastro do pet foi atualizado com sucesso",
+        pets
+      })
+    }
+  }
+  )
+}
+
+
+
+//DELETE - deleta Pet por id específico e retorna mensagem 
+
+const deleteByIdPet = (req, res) => {
+  const idParam = req.query
+  petsCollection.findByIdAndDelete(idParam, (error, pets) => {
+    if (error) {
+      return res.status(500).send({
+        mensagem: "Algo inesperado aconteceu ao deletar",
+        error
+      })
+
+    } else {
+      if (pets) {
+        return res.status(200).send({
+          mensagem: "O cadastro do pet foi apagado com sucesso"
         })
+      } else {
+        return res.sendStatus(404)
       }
-
-//Get nome
-const getNome = (req,res) => {
-    const nomeParam = req.params.nome // normalize("NFD").replace(/[^a-zA-Zs]/g, "")
-
-    lugaresCollection.find({nome: new RegExp(nomeParam,'i')},(error,nomeLugar)=>{  
-
-        if(error){
-            return res.status(404).send(error)
-        }else{
-            if(nomeLugar){
-                return res.status(200).send({
-                mensagem:"Lugares encontrados!",
-                nomeLugar})
-            }else{
-                return res.status(404).send("Lugar não encontrado")
-            }
-        }
-    }).sort({nome:1})
+    }
+  })
 }
- 
-
-// POST add novo lugar
-const addLugar  = (req,res)=>{
-    
-    const lugarBody = req.body 
-    const lugarAdd= new lugaresCollection(lugarBody)
-
-    lugarAdd.save((error)=>{   
-        if(error){
-            return res.status(400).send(error)
-        }else{
-            return res.status(200).send({
-                mensagem: "POST com sucesso",
-                lugarAdd
-            })
-        }
-    })
-}
-
-// PUT atualizar 
-
-const upDate = (req,res) =>{
-    const idParam = req.params.id
-    const atualizaBody = req.body
-    const novo = {new:true} // editamos dizendo que estamos apenas atualizando
-
-    lugaresCollection.findByIdAndUpdate(idParam, atualizaBody, novo,(error,atualiza)=>{
-
-            if(error) {
-                return res.status(500).send(error)
-            } else if (atualiza) {
-                return res.status(200).send({mensagem: "Atualização realizada",atualiza})
-            } else {
-                return res.status(404).send({mensagem: "Contato não encontrado"})
-        }
-    
-    })
-}
-
-
-
-// deletar pelo id
-
-const delLocalById = (req,res)=>{
-    const idParam = req.params.id
-    lugaresCollection.findByIdAndDelete(idParam, (error, contatoID)=>{
-        if(error){
-            return res.status(500).send(error)
-        }else{
-            if(contatoID){
-                return res.status(200).send({mensagem:"lugar apagado"})
-            }else{
-                return res.status(404).send("Local não encontrado")
-            }
-        }
-    })
-}
-    
-
-      
 
 
 module.exports = {
-    getLugares,
-    getTipo,
-    getNome,
-    getById,
-    addLugar,
-    upDate,
-    delLocalById
-} 
+  getPets,
+  getNomePets,
+  addPet,
+  updatePet,
+  deleteByIdPet
+}

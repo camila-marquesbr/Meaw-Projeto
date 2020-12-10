@@ -16,6 +16,7 @@ db.connect()
 app.use(cors()) 
 app.use(express.json())
 app.use('/', index)
+app.use('/', meaw)
 
 
 module.exports = app

@@ -60,7 +60,7 @@ const addPet = (req, res) => {
 
 //atualiza cadastro
 const updatePet = (req, res) => {
-  const idParam = req.query._id
+  const idParam = req.query
   const contatoBody = req.body
   const update = { new: true }
 

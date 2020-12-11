@@ -60,7 +60,7 @@ const addPet = (req, res) => {
 
 //atualiza cadastro
 const updatePet = (req, res) => {
-  const idParam = req.query
+  const idParam = req.query._id
   const contatoBody = req.body
   const update = { new: true }
 
@@ -87,7 +87,7 @@ const updatePet = (req, res) => {
 //DELETE - deleta Pet por id específico e retorna mensagem 
 
 const deleteByIdPet = (req, res) => {
-  const idParam = req.query
+  const idParam = req.query._id
   petsCollection.findByIdAndDelete(idParam, (error, pets) => {
     if (error) {
       return res.status(500).send({

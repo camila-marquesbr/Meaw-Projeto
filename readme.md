@@ -5,7 +5,7 @@
 <h4>Objetivo: O objetivo do projeto meaw será colaborar para que todos os gatinhos e catchorrinhos que ainda não tem um lar, ou estão em lar temporário, conseguirem achar um lar para chamar de seu.<h4>
 
 <h4>O que espera do projeto? 
-Conectar pessoas com bichinhos de rua que estão procurando um lar.<h4>
+Conectar pessoas com pets de rua que estão procurando um lar.<h4>
 
 <h4>Como pretendo realizar?
 Perfis de usuários que podem criar perfis para pets que estão procurando um lar.

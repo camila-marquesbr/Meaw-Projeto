@@ -12,11 +12,11 @@ Perfis de usuários que podem criar perfis para pets que estão procurando um la
 Um usuário poderá pesquisar por um gato/cachorro que deseja adotar e poderá fazer contato com o "dono temporário" ou com a pessoa que realizou o post dos pets.<h4>
 
 <h4>Tecnologias utilizadas:
-Javascript
-NodeJS
-Heroku
-MongoDB
-Estrutura MVC
-Postman
-Git/github
+Javascript<br>
+NodeJS<br>
+Heroku<br>
+MongoDB<br>
+Estrutura MVC<br>
+Postman<br>
+Git/github<br>
 <h4>

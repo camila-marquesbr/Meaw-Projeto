@@ -1,5 +1,6 @@
 <h1>Projeto Meaw<h1>
 
+<img src="https://github.com/camila-marquesbr/Meaw-Projeto/blob/main/Meaw.jpg">
 
 <h4>Objetivo: O objetivo do projeto meaw será colaborar para que todos os gatinhos e catchorrinhos que ainda não tem um lar, ou estão em lar temporário, terem um lar para chamar de seu.<h4>
 

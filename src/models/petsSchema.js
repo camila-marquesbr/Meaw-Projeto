@@ -11,6 +11,10 @@ const petsSchema = new Schema({
         type: String,
         required: true
     },
+    tipo_animal: {
+        type: String,
+        required: true
+    },
     peso: {
         type: String,
         required: true
